@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie ie6 no-js" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie ie7 no-js" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie ie8 no-js" lang="en"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie ie9 no-js" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--><html class="no-js" lang="en"><!--<![endif]-->
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+        <title>Grepho</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <meta name="description" content="Fullscreen Background Image Slideshow with CSS3 - A Css-only fullscreen background image slideshow" />
+        <meta name="keywords" content="css3, css-only, fullscreen, background, slideshow, images, content" />
+        <meta name="author" content="Codrops" />
+        <link rel="shortcut icon" href="../favicon.ico"> 
+        <link rel="stylesheet" type="text/css" href="/templates/css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="/templates/css/style1.css" />
+		<script type="text/javascript" src="js/modernizr.custom.86080.js"></script>
+
+        <style type="text/css">
+            .ch4{
+                font-weight: bold;
+                font-size: 30px;
+                left: 500px;
+                color: #fff;
+                background: #a90329;
+                background: -moz-linear-gradient(top, #a90329 0%, #8f0222 44%, #6d0019 100%);
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a90329), color-stop(44%,#8f0222), color-stop(100%,#6d0019));
+                background: -webkit-linear-gradient(top, #a90329 0%,#8f0222 44%,#6d0019 100%);
+                background: -o-linear-gradient(top, #a90329 0%,#8f0222 44%,#6d0019 100%);
+                background: -ms-linear-gradient(top, #a90329 0%,#8f0222 44%,#6d0019 100%);
+                background: linear-gradient(top, #a90329 0%,#8f0222 44%,#6d0019 100%);
+                border-radius: 15px;
+                width: 360px;
+                height: 250px;
+                top: 230px;
+                position: absolute;
+                left: 710px;
+            }
+
+            .l1{
+                display: inline;
+                color: white;
+                margin-left: 20px;
+            }
+
+            .l2{
+                color: white;
+                margin-left: 20px;
+            }
+
+            .l3{
+                color: white;
+                margin-left: 20px;
+            }
+
+            .l4{
+                color: white;
+                margin-left: 20px;
+            }
+
+
+            .l1 :hover{
+                color: aqua;
+            }
+
+        </style>
+    </head>
+    <body id="page">
+        <ul class="cb-slideshow">
+            <li><span>Image 01</span>
+            <li><span>Image 02</span>
+            <li><span>Image 03</span>
+            <li><span>Image 04</span>
+            <li><span>Image 05</span>
+            <li><span>Image 06</span>
+        </ul>
+        <div class="container">
+            <!-- Codrops top bar -->
+            <div class="codrops-top">
+                <a href="http://tympanus.net/Development/RockingLetters/">
+                    <strong><marquee>La solution d'immobilier au Burundi</marquee></strong>
+                </a>
+                <span class="right">
+                    <a href="http://www.flickr.com/photos/markjsebastian/" target="_blank"></a>
+                    
+                        <a href=""><strong>@ Grep Agency</strong></a>
+                    </a>
+                </span>
+                <div class="clr"></div>
+            </div><!--/ Codrops top bar -->
+            <header>
+                <h1>GREPho</h1>
+				<p class="codrops-demos">
+					<a href="#" class="current-demo">Location</a>
+					<a href="{% url 'vente' %}">Vente</a>
+					<a href="{% url 'maison_passage' %}">Maison de Passage</a>
+					<a href="{% url 'parcelle' %}">Parcelles</a>
+				</p>
+            </header>
+
+            <div class="ch4">
+                <h3>Chercher une maison a :</h3><br>
+                <ul class="l1">
+                    <li><a href="{% url 'four' %}" class="l1"> 4+ Chambres </a></li>
+                    <li><a href="{% url 'three' %}" class="l2">3  Chambres </a></li>
+                    <li><a href="{% url 'two' %}" class="l3">2  Chambres </a></li>
+                    <li><a href="{% url 'one' %}" class="l4">1  Chambre</a></li>
+                </ul>
+                        
+            </div>   
+        </div>
+        
+    </body>
+
+</html>

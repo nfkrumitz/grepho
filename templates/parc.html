@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcelles</title>
+
+    <style>
+
+        *{
+            margin: 0;
+        }
+        .container{
+            display: grid;
+            height: 100vh;
+            grid-template-columns: auto;
+            grid-template-rows: 0.1fr 0.3fr 1.3fr 0.3fr;
+            grid-template-areas: 
+            "span"
+            "nav"
+            "main"
+            "footer";
+        }
+
+        span{
+            background-color: black;
+            grid-area: 'span';
+            color: white;
+        }
+
+        h6{
+            font-weight: bold;
+            text-align: right;
+            font-size: 13px;
+            margin-top: 7px;
+        }
+
+        nav{
+            background-color: white;
+            grid-area: nav;
+        }
+
+        nav h1{
+            font-style: normal;
+            font-family: monospace;
+            font-size: 32px;
+            margin-left: 35px;
+            margin-top: 15px;
+            color:#a90329;
+        }
+
+        nav ul{
+            display: grid;
+            width: 40vw;
+            height: 4vh;
+            grid-template-columns: auto auto auto auto;
+            margin-top: 13px;
+            grid-gap: 0.5rem;
+        }
+
+        nav ul a{
+            text-decoration: none;
+            background-color: #a90329;
+            text-align: center;
+            border-radius: 18%;
+            color: white;
+            font-family: Verdana;
+            font-weight: bold;
+            font-size: 12px;
+            margin-bottom:2px;
+            
+        }
+
+        nav ul a:hover{
+            background-color: #6d0019;
+        }
+
+        .actif{
+            background-color: #6d0019;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span><h6>@Grep Agency </h6></span>
+        <nav>
+            <h1>GREPHO</h1>
+            <ul>
+                <a href="{% url 'accueil' %}">Location</a>
+                <a href="{% url 'vente' %}">Vente</a>
+                <a href="{% url 'maison_passage' %}">Maison de passage</a>
+                <a href="{% url 'parcelle' %}" class="actif">Parcelle</a>
+            </ul>
+        </nav>
+        <main>Corps</main>
+        <footer>Footer</footer>
+    </div>
+</body>
+</html>

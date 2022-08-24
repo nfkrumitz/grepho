@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% load static %}
+	<title></title>
+
+
+<style type="text/css">
+
+  *{
+    margin: 0;
+
+  }
+
+  .container{
+    display: grid;
+    min-height: 100vh;
+    grid-template-columns: 0.37fr 1.5fr;
+    grid-template-rows: 0.2fr 1fr 0.5fr 0.3fr;
+    grid-template-areas:
+    "nav nav"
+    "sidebar main"
+    "sidebar main"
+    "footer footer";
+  }
+
+  nav{
+    background-color: #a90329;
+    grid-area: nav;
+  }
+
+  nav h1{
+    color: white;
+    margin: 12px;
+    margin-left: 8%;
+    font-weight: bold;
+  }
+
+  main{
+    background-color: whitesmoke;
+    grid-area: main;
+  }
+
+  .sidebar{
+    
+    grid-area: sidebar;
+  }
+
+  footer{
+    background-color: lightcoral;
+    grid-area: footer;
+  }
+
+  .cat{
+    margin: 0;
+  }
+  .cat ul h2{
+    color: #a90329;
+    margin-left: 0;
+  }
+
+  .cat ul li{
+    margin-left: 32px;
+    margin-top: 12px;
+  }
+
+  .cat ul li a{
+    text-decoration: none;
+  }
+
+  .cat ul li a:hover{
+    background-color: #a90329;
+    color: white;
+
+  }
+  .prop ul h2{
+    color: #a90329;
+    margin-left: 0;
+  }
+
+  .prop ul li{
+    margin-left: 32px;
+    margin-top: 12px;
+  }
+
+  .prop ul li a{
+    text-decoration: none;
+  }
+
+  .quart ul h2{
+    color: #a90329;
+    margin-left: 0;
+  }
+
+  .quart ul li{
+    margin-left: 32px;
+    margin-top: 12px;
+  }
+
+  .quart ul li a{
+    text-decoration: none;
+  }
+
+  main h2{
+    text-align: center;
+    color: #a90329;
+  }
+
+  main p{
+    margin-left: 2%;
+    margin-top: 2%;
+    color: #a90329;
+    font-weight: bold;
+    font-size: 17px;
+  }
+
+  .i{
+    margin: 0;
+    width: 100%;
+    height: 30%;
+    border-color: white;
+
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 
+    "vue"
+    "contenu";
+  }
+
+    .vue{
+      grid-area: vue;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .contenu h1{
+      font-size: 18px;
+      margin-left:70%;
+      margin-top: 0;
+    }
+
+    .pagination a {
+      color: black;
+      width: 20px;
+      height: 15px;
+      text-decoration: none;
+      transition: background-color .3s;
+    }
+
+    .pagination a.active {
+      background-color: dodgerblue;
+      color: white;
+    }
+
+    .pagination a:hover:not(.active) {background-color: #a90329; color: white;}
+
+    .loc{width: 20px;
+      margin-top: 13%;
+      margin-left: 2%;
+    }
+
+    .btn{
+      text-decoration: none;
+      margin-left: 50%;
+      margin-bottom: 4%;
+      background-color: green;
+      color: white;
+      width: 120px;
+      height: 50px;
+      border-radius: 3px;
+    }
+</style>
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <h1>GREPho</h1>
+    </nav>
+    <div class="sidebar">
+
+      <div class="cat">
+        <ul><h2>Categorie</h2>
+          <li><a href="">Simple</a></li>
+          <li><a href="">Etage</a></li>
+        </ul>
+      </div> <br><br>
+
+      <div class="prop">
+        <ul><h2>Property</h2>
+          <li><a href="">4+ chambres</a></li>
+          <li><a href="">3 chambres</a></li>
+          <li><a href="">2 chambres</a></li>
+          <li><a href="">1 chambre</a></li>
+        </ul>
+      </div> <br><br>
+
+      <div class="quart">
+        <ul><h2>Quartier</h2>
+          <li><a href="">Kiriri</a></li>
+          <li><a href="">Gatoke</a></li>
+          <li><a href="">Sororezo</a></li>
+          <li><a href="">Rohero</a></li>
+          <li><a href="">Kabondo</a></li>
+        </ul>
+      </div>
+    </div>
+    <main>
+      <h2>Maisons et appartements a louer a BUJUMBURA</h1>
+      <p>Appartements a 2 Chambres</p>
+      {% for i in four_lists%}
+        <div class="i">
+          <div class="vue" style="background-image: url('{{ i.profile.url }}')">
+          </div>
+          <div class="contenu">
+            <h1>{{i.price}}</h1>
+            <div>
+              <img class="loc" src="/media/images/location.ico" alt="">
+              {{i.quarter}}
+              <a href="{% url 'details' i.number %}" class="btn">Explorer</a>
+              
+            </div>
+          </div>
+        </div> <br>
+  
+      {% endfor %} <br>
+
+
+      <div class="pagination">
+
+        {% if four_lists.has_previous %}
+          <a href="?page=1">&laquo</a>
+          <a href="?page={{four_lists.previous_page_number}}">Precedent</a>
+        {% endif %}
+
+        <!--Page {{four_lists.number}} of {{four_lists.paginator.num_pages}}-->
+
+        {% for a in nums %}
+            <a href="?page={{forloop.counter}}">{{forloop.counter}}</a>
+        {% endfor %}
+
+        {% if four_lists.has_next %}
+          <a href="?page={{ four_lists.next_page_number }}">Suivant</a>
+          <a href="?page={{ four_lists.paginator.num_pages }}">&raquo</a>
+        {% endif %}
+
+      </div>
+     
+    </main>
+    <footer>Footer</footer>
+  </div>
+</body>
+</html>

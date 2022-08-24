@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vente</title>
+
+    <style>
+
+        *{
+            margin: 0;
+        }
+        .container{
+            display: grid;
+            height: 100vh;
+            grid-template-columns: auto;
+            grid-template-rows: 0.1fr 0.3fr 1.3fr 0.3fr;
+            grid-template-areas: 
+            "span"
+            "nav"
+            "main"
+            "footer";
+        }
+
+        span{
+            background-color: black;
+            grid-area: 'span';
+            color: white;
+        }
+
+        h6{
+            font-weight: bold;
+            text-align: right;
+            font-size: 13px;
+            margin-top: 7px;
+        }
+
+        nav{
+            background-color: white;
+            grid-area: nav;
+        }
+
+        nav h1{
+            font-style: normal;
+            font-family: monospace;
+            font-size: 32px;
+            margin-left: 35px;
+            margin-top: 15px;
+            color:#a90329;
+        }
+
+        nav ul{
+            display: grid;
+            width: 40vw;
+            height: 4vh;
+            grid-template-columns: auto auto auto auto;
+            margin-top: 13px;
+            grid-gap: 0.5rem;
+        }
+
+        nav ul a{
+            text-decoration: none;
+            background-color: #a90329;
+            text-align: center;
+            border-radius: 18%;
+            color: white;
+            font-family: Verdana;
+            font-weight: bold;
+            font-size: 12px;
+            margin-bottom:2px;
+            
+        }
+
+        nav ul a:hover{
+            background-color: #6d0019;
+        }
+
+        .actif{
+            background-color: #6d0019;
+        }
+
+        .cont{
+            display: grid;
+            grid-template-columns: 1fr 0.5fr;
+            grid-area: 
+            "h5"
+            "h6";
+        }
+
+        h5{
+            grid-area: "h5";
+            margin-top: 7px;
+        }
+
+        .i{
+        margin: 0;
+        width: 100%;
+        height: 30%;
+        border-color: white;
+
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: 
+        "vue"
+        "contenu";
+    }
+    .vue{
+      grid-area: vue;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin-left: 9%;
+    }
+
+    .contenu h1{
+      font-size: 18px;
+      margin-left:70%;
+      margin-top: 0;
+    }
+
+    .pagination a {
+      color: black;
+      width: 20px;
+      height: 15px;
+      text-decoration: none;
+      transition: background-color .3s;
+    }
+
+    .pagination a.active {
+      background-color: dodgerblue;
+      color: white;
+    }
+
+    .pagination a:hover:not(.active) {background-color: #a90329; color: white;}
+
+    .loc{width: 20px;
+      margin-top: 13%;
+      margin-left: 2%;
+    }
+
+    .btn{
+      text-decoration: none;
+      margin-left: 50%;
+      margin-bottom: 4%;
+      background-color: green;
+      color: white;
+      width: 120px;
+      height: 50px;
+      border-radius: 3px;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="cont">
+            <h5><marquee>Page de Vente</marquee></h5>
+            <h6>@Grep Agency </h6>
+
+        </span>
+        <nav>
+            <h1>GREPHO</h1> <h2 style="margin-left:4%">Maisons a vendre a BUJUMBURA</h1>
+            <ul>
+                <a href="{% url 'accueil' %}">Location</a>
+                <a href="{% url 'vente' %}" class="actif">Vente</a>
+                <a href="{% url 'maison_passage' %}">Maison de passage</a>
+                <a href="{% url 'parcelle' %}">Parcelle</a>
+            </ul>
+        </nav>
+        <main><br>
+            
+
+            {% for i in four_lists %}
+            {% if i.but == 'location' %}
+        <div class="i">
+          <div class="vue" style="background-image: url('{{ i.image.url }}')">
+          </div>
+          <div class="contenu">
+            <h1>{{i.price}}</h1>
+            <div>
+              <img class="loc" src="/media/images/location.ico" alt="">
+              {{i.quarter}}
+              <a href="{% url 'details' i.number %}" class="btn">Explorer</a>
+              
+            </div>
+          </div>
+        </div> <br>
+        {% endif %}
+      {% endfor %} <br>
+
+
+      <div class="pagination">
+
+        {% if four_lists.has_previous %}
+          <a href="?page=1">&laquo</a>
+          <a href="?page={{four_lists.previous_page_number}}">Precedent</a>
+        {% endif %}
+
+        <!--Page {{four_lists.number}} of {{four_lists.paginator.num_pages}}-->
+
+        {% for a in nums %}
+            <a href="?page={{forloop.counter}}">{{forloop.counter}}</a>
+        {% endfor %}
+
+        {% if four_lists.has_next %}
+          <a href="?page={{ four_lists.next_page_number }}">Suivant</a>
+          <a href="?page={{ four_lists.paginator.num_pages }}">&raquo</a>
+        {% endif %}
+
+      </div>
+        </main>
+        <footer>Footer</footer>
+    </div>
+</body>
+</html>
